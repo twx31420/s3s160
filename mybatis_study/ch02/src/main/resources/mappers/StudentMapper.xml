@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.nf.ch02.dao.StudentDao">
+<!--    使用uuid，有两种方式
+        第一种是利用mysql的uuid函数生成一个uuid然后插入数据库-->
+    <insert id="save" parameterType="student" >
+<!--   keyProperty对应实体的主键字段,这样在生成uuid后会将这个唯一标识符保存在这个字段中
+       resultType指定uuid函数返回的主键类型，对应实体主键字段的类型
+       order主键是在执行sql之前还是之后生成-->
+        <selectKey keyProperty="stuId" resultType="java.lang.String" order="BEFORE">
+            select uuid()
+        </selectKey>
+        insert into stu_info(stu_id,stu_name) values (#{stuId},#{stuName})
+    </insert>
+<!--    另外一种方式就是在程序中生成好uuid，然后又直接插入数据库-->
+    <insert id="save2" parameterType="student" >
+    insert into stu_info(stu_id,stu_name) values (#{stuId},#{stuName})
+    </insert>
+   
+</mapper>

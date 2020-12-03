@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>edu.nf</groupId>
+    <artifactId>spring-study</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>ch01</module>
+        <module>ch02</module>
+        <module>ch03</module>
+        <module>ch04</module>
+        <module>ch05</module>
+        <module>ch06</module>
+        <module>ch07</module>
+        <module>ch08</module>
+        <module>ch09</module>
+        <module>spring</module>
+    </modules>
+    <!--    <packaging>war</packaging>-->
+
+    <properties>
+        <!-- 设置项目的编码 -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!--设置test控制台中文乱码问题-->
+        <orgLine>-Dfile.encoding=UTF-8</orgLine>
+        <!-- 设置java的版本为1.8-->
+        <java.version>1.8</java.version>
+        <!-- 源码编译的版本为1.8-->
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <!-- 目标字节码的版本为1.8-->
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <!-- 指定编译器版本为1.8-->
+        <maven.compiler.compilerVersion>1.8</maven.compiler.compilerVersion>
+
+    </properties>
+
+    <dependencies>
+<!--        spring依赖-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>5.2.9.RELEASE</version>
+        </dependency>
+<!--        junit单元测试-->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+
+
+    </dependencies>
+
+
+
+<!--    &lt;!&ndash;    war打包的插件&ndash;&gt;-->
+<!--    <build>-->
+<!--        <plugins>-->
+<!--            &lt;!&ndash; war插件 &ndash;&gt;-->
+<!--            <plugin>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-war-plugin</artifactId>-->
+<!--                <version>2.2</version>-->
+<!--                <configuration>-->
+<!--                    &lt;!&ndash; 指定项目的web目录 &ndash;&gt;-->
+<!--                    <warSourceDirectory>web</warSourceDirectory>-->
+<!--                    &lt;!&ndash; 指定web.xml路径 &ndash;&gt;-->
+<!--                    <webXml>web\WEB-INF\web.xml</webXml>-->
+<!--                    &lt;!&ndash; 忽略web.xml文件&ndash;&gt;-->
+<!--                    &lt;!&ndash;                    <failOnMissingWebXml>false</failOnMissingWebXml>&ndash;&gt;-->
+<!--                </configuration>-->
+<!--            </plugin>-->
+<!--        </plugins>-->
+<!--    </build>-->
+
+
+</project>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.nf.hw2.ch02.dao.BooksDao">
+
+    <insert id="save" parameterType="books" >
+        insert into Books(BookName,BookAuthor,BookPrice) values(#{name},#{author},#{price})
+    </insert>
+    <update id="update" parameterType="books">
+        update Books set BookName=#{name},BookAuthor=#{author},BookPrice=#{price} where  BookId=#{id}
+    </update>
+    <delete id="delete" parameterType="int">
+        delete from Books where BookId=#{id}
+    </delete>
+
+</mapper>

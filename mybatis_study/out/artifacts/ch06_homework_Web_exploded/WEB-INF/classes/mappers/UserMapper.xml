@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.nf.hw06.dao.UserDao">
+
+    <resultMap id="userMap" type="edu.nf.hw06.entity.Users">
+        <id property="uid" column="u_id" />
+        <result property="userName" column="u_name" />
+        <result property="age" column="age" />
+        <result property="tel" column="tel" />
+    </resultMap>
+
+    <select id="listuser" parameterType="users" resultMap="userMap">
+        select u_id ,u_name ,age , tel from user_info2
+        <where>
+            <if test="userName != null and userName !=''">
+                u_name = #{userName}
+            </if>
+            <if test="age != null">
+                and age = #{age}
+            </if>
+        </where>
+    </select>
+
+</mapper>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>edu.nf</groupId>
+    <artifactId>homework1</artifactId>
+    <version>1.0</version>
+    <packaging>war</packaging>
+
+    <!--属性配置-->
+    <properties>
+        <!-- 设置项目的编码 -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!--设置maven test控制台中文乱码的问题-->
+        <orgLine>-Dfile.encoding=utf-8</orgLine>
+        <!-- 设置java的版本为1.8-->
+        <java.version>1.8</java.version>
+        <!-- 源码编译的版本为1.8-->
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <!-- 目标字节码的版本为1.8-->
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <!-- 指定编译器版本为1.8-->
+        <maven.compiler.compilerVersion>1.8</maven.compiler.compilerVersion>
+    </properties>
+
+    <!--依赖的jar配置-->
+    <dependencies>
+        <!--依赖servlet.api的jar文件-->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>4.0.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <!--依赖gson-->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.8.6</version>
+        </dependency>
+        <!--依赖mysql的jdbc-->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.46</version>
+        </dependency>
+    </dependencies>
+    <!--版本-->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

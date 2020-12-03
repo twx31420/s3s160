@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--mapper根节点的namespace指定Dao接口的完整类名，
+    因为mybatis在解析时需要根据这个类名来找到dao中的方法来执行 -->
+<mapper namespace="edu.nf.ch01.dao.UserDao">
+    <!--为每一个ddao的方法分别映射sql语句-->
+    <!--    添加，映射insert,
+        id对应的是dao方法名;
+        parameterType表示dao方法参数的类型,这里可以引用核心配置文件中定义的别名
+        在sql语句中使用#{}表达式来指定要插入的列，#{}中指定实体的字段名-->
+    <insert id="save" parameterType="users">
+        insert into user_info(u_name) values(#{userName})
+    </insert>
+<!--    当参数是map的时候，parameterType指定为map即可
+        因此#{}表达式中指定是map的key-->
+    <insert id="save2" parameterType="map">
+        insert into user_info(u_name) values(#{uname})
+    </insert>
+    <!--    修改-->
+    <update id="update" parameterType="users">
+        update user_info set u_name=#{userName} where u_id=#{uid}
+    </update>
+    <!--    更新2，（注意：当有多个参数是，不需要指定parameterType，
+            因此在#{}表达式中需要使用固定参数（param1,param2）的方式指定）-->
+    <update id="update2">
+         update user_info set u_name=#{param1} where u_id=#{param2}
+    </update>
+    <!--    删除 ,（注意：当参数是基本数据类型或String时，并且参数只有一个）-->
+    <delete id="delete" parameterType="int">
+        delete from user_info where u_id=#{uid}
+    </delete>
+
+</mapper>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--    配置UserDao-->
+    <bean id="userDao" class="edu.nf.ch05.dao.impl.UserDaoImpl" />
+<!--    配置userService-->
+    <bean id="userService" class="edu.nf.ch05.service.impl.UserServiceImpl" >
+<!--    给userservice注入换一个userDao。通过set方法注入，name对应
+        的是setDao方法，去掉set并把D改为小写，就是dao
+        ref 指定上面配置的UserDao 的id-->
+<!--        <property name="dao" ref="userDao" />-->
+
+
+<!--    构造方法注入，name指定构造方法的参数名，ref引用userDao的id-->
+        <constructor-arg name="dao" ref="userDao" />
+<!--     也可以通过参数下标（index）注入   index表示参数的下标-->
+<!--        <constructor-arg index="0" ref="userDao" />-->
+    </bean>
+
+
+</beans>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!--    配置FactoryBean ，在调用容器的getBean方法是，返回的不是MyFactoryBean本身的实例，
+        而是由FactoryBean的getObject方法返回的对象-->
+    <bean id="userService" class="edu.nf.ch07.demo1.MyFactoryBean" />
+</beans>

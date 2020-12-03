@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>edu.nf</groupId>
+    <artifactId>maven_project</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>war</packaging>
+    <!--packaging指定打包的格式，可以是jar或者war或者pom-->
+
+    <!--属性配置-->
+    <properties>
+        <!-- 设置项目的编码 -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- 设置java的版本为1.8-->
+        <java.version>1.8</java.version>
+        <!-- 源码编译的版本为1.8-->
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <!-- 目标字节码的版本为1.8-->
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <!-- 指定编译器版本为1.8-->
+        <maven.compiler.compilerVersion>1.8</maven.compiler.compilerVersion>
+
+        <!--自定义属性，管理依赖的版本号,在依赖中引用此版本号即可-->
+        <servlet.version>4.0.1</servlet.version>
+        <gson.version>2.8.6</gson.version>
+        <mysql.version>5.1.47</mysql.version>
+        <junit.version>4.12</junit.version>
+    </properties>
+
+    <!--依赖的jar配置-->
+    <dependencies>
+      <!--junit单元测试-->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+            <!--排除传递依赖-->
+            <!--排除hamcrest-core-->
+            <!--
+            <exclusions>
+                <exclusion>
+                    <groupId>org.hamcrest</groupId>
+                    <artifactId>hamcrest-core</artifactId>
+                </exclusion>
+            </exclusions>
+            -->
+        </dependency>
+
+        <!--依赖servlet.api的jar文件-->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <!--引用自定义属性的版本号-->
+            <version>${servlet.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <!--依赖gson-->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>${gson.version}</version>
+        </dependency>
+        <!--依赖mysql的jdbc-->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.version}</version>
+        </dependency>
+    </dependencies>
+
+
+    <!--在构建中设置插件，可以改变插件的默认行为-->
+    <build>
+        <plugins>
+            <!--设置编译插件-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+            <!--war插件-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <!-- 指定项目的web目录 -->
+                    <warSourceDirectory>web</warSourceDirectory>
+                    <!-- 指定web.xml路径 -->
+                    <webXml>web\WEB-INF\web.xml</webXml>
+                    <!-- 忽略web.xml文件-->
+                    <!-- <failOnMissingWebXml>false</failOnMissingWebXml>-->
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

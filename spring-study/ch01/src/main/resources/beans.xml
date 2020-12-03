@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!--    配置Users类，将它纳入spring容器中管理
+        id指定这个类在容器中的唯一标识,不可重复-->
+    <bean id="user" class="edu.nf.ch01.Users" />
+    <bean id="people" class="edu.nf.ch01.People" />
+
+<!--    配置自定义工厂，将这个工厂本身也纳入spring容器中管理的-->
+    <bean id="usersFactoryBean" class="edu.nf.ch01.factory.UsersFactoryBean" />
+<!--    装配这个工厂，通过它来创建users实例,factory-bean引用上面配置的工厂bean的id，
+        factory-method指定为工厂类中的build方法-->
+    <bean id="user1" factory-bean="usersFactoryBean" factory-method="build" />
+
+
+<!--    使用工厂的静态方法来创建bean实例，
+        注意：此时的class属性指定的额不是users的完整类名，而是工厂类的完整类名
+        然后factory-method指定工厂类中的静态方法create-->
+    <bean id="user2" class="edu.nf.ch01.factory.UsersFactory" factory-method="create" />
+</beans>

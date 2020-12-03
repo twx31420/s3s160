@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css"/>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script>
+        $(function(){
+            loadtab();
+            $('#delbtn').on('click',function(){
+               var data= $("#form1").serialize();
+               del(data);
+            });
+        })
+        function del(da) {
+            $.ajax({
+                url:'del',
+                type:'post',
+                data:da,
+                success:function(){
+                    $("input:checked").parent().parent().remove();
+                }
+            })
+        }
+        function loadtab() {
+            $.ajax({
+                url: "list",
+                type: "get",
+                success: function (data) {
+                    $.each(data, function (index, value) {
+                        $('#tab').append(
+                            "<tr>" +
+                            "<td><input type='checkbox' name='ids' value='"+value.stuId+"' /></td>" +
+                            "<td>" + value.stuName + "</td>" +
+                            "<td>" + value.stuAge + "</td>" +
+                            "<td>" + value.classInfo.className + "</td>" +
+                            "<td>" + value.idCard.cardNum + "</td>" +
+                            "<td><input type='button' class='upbtn btn-primary btn-sm' value='明细'/></td>" +
+                            "</tr>"
+                        )
+                    })
+                    $('.upbtn').on('click',function(){
+                        $(this).closest("tr").find(":checkbox").val();
+                        var up=$(event.srcElement).parent().parent().find("input:checkbox").val();
+                        $('#loadmodal').load('main.html',function(){
+                            sel(up);
+                            $('#addmodal').modal('show');
+
+                        });
+                    });
+                }
+            })
+        }
+        function sel(num) {
+            $.ajax({
+                url:'get2',
+                type:'post',
+                data: {'uid':num},
+                success:function(data){
+                   $.each(data,function (index,value) {
+                        $("#content").append(
+                            "<p>"+(index+1)+"、"+value.subName+"</p>"
+                        )
+                   })
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+<div class="container">
+    <h1>用户信息</h1>
+    <form id="form1">
+        <div class="form-group">
+            <input type="button" id="delbtn" class="btn btn-warning" value="删除"/>
+        </div>
+        <table id="tab" class="table table-bordered table-striped table-hover">
+            <tr>
+                <th>选择</th>
+                <th>姓名</th>
+                <th>年龄</th>
+                <th>班级</th>
+                <th>身份证</th>
+                <th>操作</th>
+            </tr>
+        </table>
+    </form>
+    <div id="loadmodal"></div>
+
+</div>
+</body>
+</html>

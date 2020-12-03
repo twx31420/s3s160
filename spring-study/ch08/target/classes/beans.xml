@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="userDao" class="edu.nf.ch08.factorybean.MapperFactoryBean">
+<!--       MapperFactoryBean需要注入一个dao接口的class对象
+            注入的时候只需要个dao接口的完整类名即可，spring会将其加载并创建class-->
+        <property name="daoInterface" value="edu.nf.ch08.dao.UserDao" />
+    </bean>
+
+<!--    装配UserService-->
+    <bean id="userService" class="edu.nf.ch08.service.impl.UserServiceImpl">
+<!--        注入userDao-->
+        <constructor-arg name="daoproxy" ref="userDao"/>
+    </bean>
+
+</beans>

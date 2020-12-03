@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="mvc-framework:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/mvc_framework_jar</output-path>
+    <root id="archive" name="mvc-framework.jar">
+      <element id="module-output" name="mvc-framework" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../ideal工具/jar/servlet-api.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

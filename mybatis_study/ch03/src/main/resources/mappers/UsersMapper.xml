@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.nf.ch03.dao.UserDao">
+<!--    查询单挑记录，id对应方法名，parameterType对应差数的类型
+        resultType指定查询返回的结果类型， 这里引用实体别名
+        表示返回的是一个user实体对象
+        注意：sql中使用别名来映射实体的字段名，这样查询的结果就会映射到对应的字段中
+        列如：u_id（表的列名）as uid（实体的字段名）-->
+    <select id="getUserByid" parameterType="int" resultType="users">
+        select u_id as uid,u_name as userName from user_info where u_id=#{id}
+    </select>
+<!-- 查询单条机，返回一个map对象，resultType指定为map即可
+     注意：不推荐这中方式-->
+    <select id="getUserById2" parameterType="int" resultType="map">
+        select u_id,u_name  from user_info where u_id=#{id}
+    </select>
+<!--    查询多条记录，返回的是一个list集合，集合中保存的是一个个的users实体，
+        因此resultType只需要指定为实体的别名即可-->
+    <select id="listUser" resultType="users">
+        select u_id as uid,u_name as userName from user_info;
+    </select>
+<!--    查询多条记录，返回一个list集合， 集合中存放的是一个个的map对象
+        一个map分装一条记录，因此resultType指定为map即可-->
+    <select id="listUser2" resultType="map">
+        select u_id,u_name  from user_info
+    </select>
+
+    <select id="count" resultType="int">
+        select count(*) from user_info
+    </select>
+
+
+
+</mapper>

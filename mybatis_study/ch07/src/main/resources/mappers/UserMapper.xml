@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.nf.ch07.dao.UserDao">
+<!--    批量添加，利用sql语句的特性来执行
+        列如：insert into user_info(u_name ,age tel)
+        values('user1','21',1234564557),
+        values('user2','22',143232564557)
+        因此可以使用foreach循环来拼接多条记录
+        注意：方法差数是list类型，因此parameterType就指定为list
+        -->
+    <insert id="addBatch" parameterType="list">
+        insert into user_info2(u_name,age ,tel) values
+        <foreach collection="list" item="u" separator=",">
+            (#{u.userName},#{u.age},#{u.tel})
+        </foreach>
+    </insert>
+<!--    批量删除,方法参数是数组是，parameterType指定为collection
+        删除可以使用in字句来批量删除，列如：
+        delete from user_info2 where u_id in (1,2,3)-->
+    <delete id="delBatch" parameterType="collection">
+        delete from user_info2 where u_id in
+        <foreach collection="array"  item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

@@ -1,0 +1,1 @@
+# factoryBean接口的使用

@@ -1,0 +1,1 @@
+# bean的id和name属性

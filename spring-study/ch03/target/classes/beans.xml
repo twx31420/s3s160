@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!--    id属性表示bean在容器中的唯一标识，是不可重复的
+        还有另外一个name属性，用于指定bean在容器中别名
+        并且别名是可以指定多个的（多个别名之间用逗号或者空格隔开），
+        因此在获取bean对象时可以根据id获取，也可以根据name来获取都是可以的
+        需要注意的是：当没有指定id但是指定了name属性时，name属性的第一个别名将自动
+        设置为id-->
+    <bean id="people" name="p1,p2,p3" class="edu.nf.ch03.People"/>
+
+</beans>

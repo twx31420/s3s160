@@ -1,0 +1,18 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="ch08:Web exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/ch08_Web_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="ch08/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="ch08" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="file-copy" path="$PROJECT_DIR$/../../mysql/mysql-connector-java-5.1.46.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../ideal工具/jar/gson-2.8.6.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/out/artifacts/mvc_framework_jar/mvc-framework.jar" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <!--父模块的坐标-->
+    <parent>
+        <artifactId>e-shop</artifactId>
+        <groupId>org.nf</groupId>
+        <version>1.0-SNAPSHOT</version>
+        <!--指定父模块pom文件的相对路径-->
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <!--子模块的项目名-->
+    <artifactId>controller</artifactId>
+    <!--子模块的web打包为war-->
+    <packaging>war</packaging>
+
+    <!--子模块按需依赖，从父模块的依赖管理中直接查找，
+    因此这里就不需要指定版本号，因为在父模块中已经指定了-->
+    <dependencies>
+        <dependency>
+            <groupId>org.nf</groupId>
+            <artifactId>mvc-framework</artifactId>
+        </dependency>
+        <!--依赖service的模块-->
+        <dependency>
+            <groupId>org.nf</groupId>
+            <artifactId>service</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- war插件 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <!-- 指定项目的web目录 -->
+                    <warSourceDirectory>web</warSourceDirectory>
+                    <!-- 指定web.xml路径 -->
+                    <webXml>web\WEB-INF\web.xml</webXml>
+                    <!-- 忽略web.xml文件-->
+<!--                    <failOnMissingWebXml>false</failOnMissingWebXml>-->
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+
+
+
+</project>

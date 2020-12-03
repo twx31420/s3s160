@@ -1,0 +1,13 @@
+create table Books
+(
+BookId int primary key AUTO_INCREMENT,
+BookName varchar(100) not null,
+BookAuthor varchar(50) not null,
+BookPrice float not null
+)
+
+alter table Books AUTO_INCREMENT=1000;
+
+insert into Books(BookName,BookAuthor,BookPrice) values('时间简史','霍金',100.00)
+
+select * from Books

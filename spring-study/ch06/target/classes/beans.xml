@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--    <bean id="user" class="edu.nf.ch06.Users" >
+&lt;!&ndash;   构造方法注入,注入值&ndash;&gt;
+&lt;!&ndash;        注入值&ndash;&gt;
+        <constructor-arg name="userName" value="user1" />
+        <constructor-arg name="age" value="21" />
+&lt;!&ndash;        注入list集合&ndash;&gt;
+        <constructor-arg name="address">
+            <list>
+                <value>广州</value>
+                <value>珠海</value>
+            </list>
+        </constructor-arg>
+&lt;!&ndash;        注入map集合&ndash;&gt;
+        <constructor-arg name="card">
+            <map>
+&lt;!&ndash;                一个entry代表一个键值对&ndash;&gt;
+                <entry key="工行" value="234525465344567634"/>
+                <entry key="建行" value="347454456564653564"/>
+            </map>
+        </constructor-arg>
+&lt;!&ndash;        注入properties对象&ndash;&gt;
+        <constructor-arg name="prop">
+            <props>
+                <prop key="aa">123455</prop>
+                <prop key="bb">345675</prop>
+            </props>
+        </constructor-arg>
+
+    </bean>-->
+<!--    通过set方法注入-->
+    <bean id="user" class="edu.nf.ch06.Users">
+        <property name="userName" value="user2" />
+        <property name="age" value="22" />
+        <property name="address" >
+           <list>
+               <value>珠海</value>
+               <value>深圳</value>
+           </list>
+        </property>
+        <property name="card" >
+            <map>
+                <entry key="建设" value="4457443665465455" />
+                <entry key="邮政" value="5464545564453455" />
+            </map>
+        </property>
+        <property name="prop">
+            <props>
+                <prop key="aa">aa</prop>
+                <prop key="bb">bb</prop>
+            </props>
+        </property>
+    </bean>
+
+
+</beans>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <script src="js/jquery-3.5.1.min.js"></script>
+    <script>
+        $(function () {
+            $.ajax({
+                url:"get",
+                type:"get",
+                success:function (data) {
+                    $.each(data,function (index,user) {
+                        $("#tab").append(
+                            "<tr>" +
+                            "<td>"+user.id+"</td>" +
+                            "<td>"+user.name+"</td>" +
+                            "<td>"+user.pwd+"</td>" +
+                            "<td>"+user.age+"</td>" +
+                            "</tr>")
+                    })
+
+                }
+            })
+        })
+    </script>
+</head>
+
+<body>
+
+<table id="tab">
+    <tr>
+        <th>编号</th>
+        <th>姓名</th>
+        <th>密码</th>
+        <th>年龄</th>
+    </tr>
+</table>
+</body>
+</html>

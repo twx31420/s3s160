@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.nf.hw08.dao.StuDao">
+
+    <resultMap id="stuMap" type="edu.nf.hw08.entity.Student">
+        <id property="stuId" column="stu_id" />
+        <result property="stuName" column="stu_name" />
+        <result property="stuAge" column="stu_age" />
+        <!--        一对一或者多对一关联使用association关联
+                    一对多或者多对多使用collection关联-->
+        <!--        关联身份证，一对一关联,resultMap属性引用下面的身份证的resultMap的id-->
+        <association property="idCard" resultMap="cardMap" />
+        <!--        关联班级，多对一-->
+        <association property="classInfo" resultMap="classMap" />
+    </resultMap>
+    <!--    配置cardMapper-->
+    <resultMap id="cardMap" type="edu.nf.hw08.entity.IdCard">
+        <!--       主键-->
+        <id property="cardId" column="card_id" />
+        <!--        其他属性-->
+        <result property="cardNum" column="card_num" />
+    </resultMap>
+
+    <!--    配置classMap-->
+
+    <resultMap id="classMap" type="edu.nf.hw08.entity.ClassInfo">
+        <id property="cid" column="c_id" />
+        <result property="className" column="c_name" />
+    </resultMap>
+
+
+    <select id="getAll" resultMap="stuMap">
+        select *
+        from student_info s join card_info card on s.stu_id = card.stu_id
+        left join class_info c on c.c_id = s.c_id
+    </select>
+
+    <delete id="dels" parameterType="collection">
+        delete from student_info where stu_id in
+        <foreach collection="array"  item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+    
+
+    
+
+</mapper>
